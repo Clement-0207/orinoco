@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="public/css/style.css" />
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>MVP-Orinoco-produit</title>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <div class="col-md-4 px-0">
+          <img src="images/logoorinoco.jpg" class="img-fluid" style="border-radius: 10px 30px;">
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="panier.html">Panier</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+
+  <div class="card">
+    <div class="card-body">
+
+      <!--Grid row-->
+      <div class="row">
+        <h1 class="col-lg-12 text-center my-4">CONFIRMATION DE COMMANDE</h1>
+        <div class="col-lg-12 text-center alert alert-success">
+          <strong>Bravo!</strong> Votre commande est enregistrée, merci !
+        </div>
+        <!--Grid column-->
+        <div class="col-lg-8 mb-4">
+          <h2 id="prix-total" class="card-title">1000 euros</h2>
+          <h3 id="num-cde" class="card-title">01010101010101</h3>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer></footer>
+      <script src="confirmation.js"></script>
+</body>
+
+</html>

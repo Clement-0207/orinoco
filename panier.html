@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="public/css/style.css" />
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<title>MVP-Orinoco-produit</title>
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark top">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">
+				<div class="col-md-4 px-0">
+					<img src="images/logoorinoco.jpg" class="img-fluid" style="border-radius: 10px 30px;">
+				</div>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+					class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="panier.html">Panier</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<td colspan="1">
+						<div class="card col-12">
+							<div class="card-body col-12">
+								<div class="table-responsive col-12">
+									<table class="table product-table">
+										<thead class="mdb-color lighten-5">
+											<tr>
+												<th class="font-weight-bold">
+													<strong>Produit</strong>
+												</th>
+												<th class="font-weight-bold">
+													<strong>Nom</strong>
+												</th>
+												<th class="font-weight-bold">
+													<strong>Prix</strong>
+												</th>
+												<th class="font-weight-bold">
+													<strong>Quantité</strong>
+												</th>
+												<th class="font-weight-bold">
+													<strong>Supp</strong>
+												</th>
+											</tr>
+										</thead>
+										<tbody id="produits">
+											<tr>
+												<td colspan="1" class="text-left">
+
+												</td>
+												<td>
+													<h4 class="mt-2"><strong>Total</strong></h4>
+												</td>
+												<td class="text-right">
+													<h4 class="mt-2"><strong id="total-euro"></strong></h4>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td colspan="1">
+						<form id="contact" class="well form-horizontal" name="contact">
+							<fieldset class="col-12">
+								<div class="form-group">
+									<label class="col-md-12 control-label">Nom</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span>
+											<input id="fullName" name="nom" placeholder="Nom" class="form-control"
+												required="true" value="Bertoncello" type="text"
+												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"
+												title="Veuillez saisir un nom correct">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-12 control-label">Prénom</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span>
+											<input id="fullName" name="prenom" placeholder="Prénom" class="form-control"
+												required="true" value="Clément" type="text"
+												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-12 control-label">Adresse</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span>
+											<input id="addressLine2" name="adresse" placeholder="Adresse"
+												class="form-control" required="true" value="3 avenue Charles de Gaulle"
+												type="text">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-12 control-label">Ville</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span>
+											<input id="city" name="ville" placeholder="Ville" class="form-control"
+												required="true" value="Valréas" type="text"
+												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-12 control-label">Email</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+													class="glyphicon glyphicon-envelope"></i></span>
+											<input id="email" name="email" placeholder="Email" class="form-control"
+												required="true" value="clement@gmail.com" type="email"
+												pattern="\S+@\S+\.\S+$">
+										</div>
+									</div>
+								</div>
+								<input type="submit" onclick="location.href='confirmation.html'" ;
+									class="btn btn-primary btn-lg active" value="Commander"></input>
+							</fieldset>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer></footer>
+	<script src="panier.js"></script>
+</body>
+
+</html>
