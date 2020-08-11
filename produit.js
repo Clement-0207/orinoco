@@ -23,13 +23,45 @@ fetch("http://localhost:3000/api/teddies/" + id)
 
 let ajoutPanier = () => {
     /*afficher le Id déjà ok du produit sélectionné*/
-    let panier = JSON.parse(localStorage.getItem("panier")) || [];
-    panier.push(id);
-    localStorage.setItem("panier", JSON.stringify(panier));
-    alert("Article ajouté !")
     // Pour vider le tableau
+
     //localStorage.setItem("panier", JSON.stringify([]));
-}
+
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+    //panier.push(id);
+    panier = panierGestionQuantite(id, panier);
+
+    // ["1234", "2345"]
+    // id "2345"
+    // [{id:  "1234", quantity: 1}, {id:  "2345", quantity: 2}]
+    localStorage.setItem("panier", JSON.stringify(panier));
+    alert("Article ajouté !");
+    console.log(panier);
+
+};
+
+let panierGestionQuantite = (id, panier) => {
+    let indexDuProduitAAjouter = -1;
+    for (let i = 0; i < panier.length; i++) {
+        // ["1234", "2345"]
+        //id ("3456") l'id du produit affiché sur la page
+        //panier[i].id ("2345") l'id de l'élément i du panier - i est un nombre de chaque index du tableau
+        if (panier[i].id === id) {
+            indexDuProduitAAjouter = i;
+        }
+    }
+    if (indexDuProduitAAjouter === -1) {
+        // si il existe, on augmente quantity de 1
+        panier.push({ id: id, quantity: 1 });
+        // sinon, on ajoute un nouvel objet dans le panier
+    } else {
+        panier[indexDuProduitAAjouter].quantity += 1;
+    }
+    // recherche dans le panier si l'id  en paramètre existe
+    // retourner le panier
+    return panier;
+};
+
 
 
 

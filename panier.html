@@ -13,6 +13,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 	<title>MVP-Orinoco-produit</title>
 </head>
 
@@ -30,7 +31,8 @@
 					class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="panier.html">Panier</a></li>
+					<li class="nav-item"><a class="nav-link" href="panier.html">
+							Panier</a></li>
 				</ul>
 			</div>
 		</div>
@@ -66,7 +68,6 @@
 										<tbody id="produits">
 											<tr>
 												<td colspan="1" class="text-left">
-
 												</td>
 												<td>
 													<h4 class="mt-2"><strong>Total</strong></h4>
@@ -74,6 +75,8 @@
 												<td class="text-right">
 													<h4 class="mt-2"><strong id="total-euro"></strong></h4>
 												</td>
+												<td></td>
+												<td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -113,11 +116,9 @@
 									<label class="col-md-12 control-label">Adresse</label>
 									<div class="col-md-12 inputGroupContainer">
 										<div class="input-group">
-											<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span>
-											<input id="addressLine2" name="adresse" placeholder="Adresse"
-												class="form-control" required="true" value="3 avenue Charles de Gaulle"
-												type="text">
+											<span class="input-group glyphicon glyphicon-home"></i></span>
+											<input id="addressLine" name="adresse" class=" form-control" required="true"
+												type="text" value="3 avenue Charles de Gaulle">
 										</div>
 									</div>
 								</div>
@@ -127,7 +128,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span>
-											<input id="city" name="ville" placeholder="Ville" class="form-control"
+											<input id="city" name="ville" class="form-control" placeholder="Ville"
 												required="true" value="Valréas" type="text"
 												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
 										</div>
@@ -137,15 +138,13 @@
 									<label class="col-md-12 control-label">Email</label>
 									<div class="col-md-12 inputGroupContainer">
 										<div class="input-group">
-											<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span>
-											<input id="email" name="email" placeholder="Email" class="form-control"
-												required="true" value="clement@gmail.com" type="email"
-												pattern="\S+@\S+\.\S+$">
+											<span class="input-gr glyphicon glyphicon-envelope"></i></span>
+											<input id="email" name="email" class="form-control" placeholder="Email"
+												required="true" value="clement@gmail.com" pattern=" \S+@\S+\.\S+$">
 										</div>
 									</div>
 								</div>
-								<input type="submit" onclick="location.href='confirmation.html'" ;
+								<input type="submit" onclick="location.href='confirmation.html'"
 									class="btn btn-primary btn-lg active" value="Commander"></input>
 							</fieldset>
 						</form>
