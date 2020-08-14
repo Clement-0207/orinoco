@@ -23,7 +23,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.html">
 				<div class="col-md-4 px-0">
-					<img src="images/logoorinoco.jpg" class="img-fluid" style="border-radius: 10px 30px;">
+					<img src="images/logoorinoco.jpg" class="img-logo">
 				</div>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -41,10 +41,10 @@
 		<table class="table table-striped">
 			<tbody>
 				<tr>
-					<td colspan="1">
-						<div class="card col-12">
-							<div class="card-body col-12">
-								<div class="table-responsive col-12">
+					<td>
+						<div class="card col-sm-12">
+							<div class="card-body">
+								<div class="table-responsive">
 									<table class="table product-table">
 										<thead class="mdb-color lighten-5">
 											<tr>
@@ -54,7 +54,7 @@
 												<th class="font-weight-bold">
 													<strong>Nom</strong>
 												</th>
-												<th class="font-weight-bold">
+												<th class="text-center font-weight-bold">
 													<strong>Prix</strong>
 												</th>
 												<th class="font-weight-bold">
@@ -84,8 +84,91 @@
 							</div>
 						</div>
 					</td>
-					<td colspan="1">
-						<form id="contact" class="well form-horizontal" name="contact">
+
+					<td class="form-panier">
+
+
+						<!--nouv formulaire-->
+						<form id="contact" name="contact" class="needs-validation" novalidate>
+
+							<div class="form-row">
+								<div class="col-md mb-1">
+									<label for="validationNom">Nom</label>
+									<input type="text" class="form-control" id="validationNom" name="nom"
+										placeholder="Nom" value="" required>
+									<div class="valid-feedback">
+										Correct !
+									</div>
+									<div class="invalid-feedback">
+										Ce champ est invalide !
+									</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="col-md mb-1">
+									<label for="validationPrenom">Prénom</label>
+									<input type="text" class="form-control" id="validationPrenom" name="prenom"
+										placeholder="Prénom" value="" required>
+									<div class="valid-feedback">
+										Correct !
+									</div>
+									<div class="invalid-feedback">
+										Ce champ est invalide !
+									</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="col-md mb-1">
+									<label for="validationAdresse">Adresse</label>
+									<input type="text" class="form-control" id="validationAdresse" name="adresse"
+										placeholder="Adresse" value="" required>
+									<div class="valid-feedback">
+										Correct !
+									</div>
+									<div class="invalid-feedback">
+										Ce champ est invalide !
+									</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="col-md mb-1">
+									<label for="validationVille">Ville</label>
+									<input type="text" class="form-control" name="ville" value="" id="validationVille"
+										placeholder="Ville" required>
+									<div class="valid-feedback">
+										Correct !
+									</div>
+									<div class="invalid-feedback">
+										Ce champ est invalide !
+									</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="col-md mb-3">
+									<label for="validationEmail">Email</label>
+									<input type="email" class="form-control" name="email" value="" id="validationEmail"
+										placeholder="email" required>
+									<div class="valid-feedback">
+										Correct !
+									</div>
+									<div class="invalid-feedback">
+										Ce champ est invalide !
+									</div>
+								</div>
+							</div>
+
+							<button class="btn btn-primary" type="submit">Commander</button>
+
+						</form>
+
+
+
+						<!-- ancien formulaire ci-dessous -->
+						<!-- <form class="well form-horizontal" name="contact">
 							<fieldset class="col-12">
 								<div class="form-group">
 									<label class="col-md-12 control-label">Nom</label>
@@ -94,7 +177,7 @@
 											<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span>
 											<input id="fullName" name="nom" placeholder="Nom" class="form-control"
-												required="true" value="Bertoncello" type="text"
+												required="true" value="Bertoncello123" type="text"
 												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"
 												title="Veuillez saisir un nom correct">
 										</div>
@@ -140,14 +223,13 @@
 										<div class="input-group">
 											<span class="input-gr glyphicon glyphicon-envelope"></i></span>
 											<input id="email" name="email" class="form-control" placeholder="Email"
-												required="true" value="clement@gmail.com" pattern=" \S+@\S+\.\S+$">
+												required="true" value="clement@gmail.com" pattern="\S+@\S+\.\S+$">
 										</div>
 									</div>
 								</div>
-								<input type="submit" onclick="location.href='confirmation.html'"
-									class="btn btn-primary btn-lg active" value="Commander"></input>
+								<input type="submit" class="btn btn-primary btn-lg active" value="Commander"></input>
 							</fieldset>
-						</form>
+						</form> -->
 					</td>
 				</tr>
 			</tbody>
