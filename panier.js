@@ -3,7 +3,7 @@
 let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
 let suppression = (produitId) => {
-    let indexASupprimer = -1;
+    let indexASupprimer;
     for (let i = 0; i < panier.length; i++) {
         if (panier[i].id === produitId) {
             indexASupprimer = i;
@@ -12,41 +12,46 @@ let suppression = (produitId) => {
         //panier[0].quantity = 1
         //produit est un objet
     }
-
     // mettre à jour la quantity du produit
     // si quantité > 0 - afficher la nouvelle quantité
-    panier[indexASupprimer].quantity -= 1;
-    if (panier[indexASupprimer].quantity > 0) {
+    //panier[indexASupprimer].quantity -= 1; utile pour décrémentation
+    /*if (panier[indexASupprimer].quantity > 0) {
         let soldeQuantity = document.getElementById(produitId);
         soldeQuantity.innerHTML = panier[indexASupprimer].quantity;
-    }
+    }else{}*/
     // sinon - retrait de la ligne
-    else {
-        let indexToDelete = -1;
-        let produits = document.getElementById('produits');
-        for (let i = 0, row; row = produits.rows[i]; i++) {
-            if (row.getElementsByTagName("td")[0].id === (produitId + "-row")) {
-                indexToDelete = i;
-            }
-        }
-        produits.deleteRow(indexToDelete);
+    let quantiteSupprimee = panier[indexASupprimer].quantity;
+    let positionDansTableauHtml;
+    let tableauHtml = document.getElementById('produits');
+    for (let i = 0, row; row = tableauHtml.rows[i]; i++) {
+        if (row.getElementsByTagName("td")[0].id === (produitId + "-row")) {
+            positionDansTableauHtml = i;
 
-        // [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}, {id: "1278", quantity: 3}]
-        panier.splice(indexASupprimer, 1);
-        // [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}]
+        }
     }
+    tableauHtml.deleteRow(positionDansTableauHtml);
+
+
+    // [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}, {id: "1278", quantity: 3}]
+    panier.splice(indexASupprimer, 1);
+    if (panier.length === 0) {
+        document.getElementById('panierPlein').style.display = 'none';
+        document.getElementById('panierVide').style.display = 'block';
+    }
+    // [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}]
+
 
 
     fetch("http://localhost:3000/api/teddies/" + produitId)
         .then(reponse => reponse.json())
         .then(function (teddy) {
             // récupérer la valeur de l'article supprimé  -  prixProduit
-            let prixProduit = teddy.price / 100; // 40
+            let prixProduit = teddy.price * quantiteSupprimee / 100; // 40
             // 185,00 € ->  ["185,00", "€"] -> "185,00"
             // récupérer la somme du total euros - totalEuro
             let totalEuroString = document.getElementById('total-euro').innerHTML.split(" ")[0];
             //   "185,00" -> "185.00" -> 185
-            let totalEuro = parseFloat(totalEuroString.replace(',', '.'));
+            let totalEuro = parseFloat(totalEuroString.replace(',', '.').replace(/\s/g, ''));
             // totalEuro = totalEuro - prixProduit
             // à la suppression recalculer le total
             totalEuro = totalEuro - prixProduit; // 145
@@ -54,7 +59,6 @@ let suppression = (produitId) => {
             let totalEuroElement = document.getElementById('total-euro');
             totalEuro = totalEuro.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
             totalEuroElement.innerHTML = totalEuro; // 145,00 €
-
         });
 
     localStorage.setItem("panier", JSON.stringify(panier));
@@ -63,6 +67,13 @@ let suppression = (produitId) => {
 };
 
 let totalEuro = 0;
+if (panier.length > 0) {
+    document.getElementById('panierPlein').style.display = 'block';
+    document.getElementById('panierVide').style.display = 'none';
+} else {
+    document.getElementById('panierPlein').style.display = 'none';
+    document.getElementById('panierVide').style.display = 'block';
+}
 for (let produit of panier) {
     fetch("http://localhost:3000/api/teddies/" + produit.id)
         .then(reponse => reponse.json())
@@ -70,6 +81,7 @@ for (let produit of panier) {
             let produits = document.getElementById('produits');
             let euros = teddy.price / 100;
             totalEuro += teddy.price * produit.quantity;
+            //console.log(produit.quantity);
             euros = euros.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
             let row = produits.insertRow(0);
             row.innerHTML =
@@ -96,28 +108,28 @@ for (let produit of panier) {
 }
 //pattern js
 let validateNom = () => {
-    if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(document.contact.nom.value)) {
+    if (!/^[a-zA-Z][A-Za-z-\s]+$/.test(document.contact.nom.value)) {
         document.getElementById("validationNom").setCustomValidity("Not valid");
         return false;
     }
     return true;
 }
 let validatePrenom = () => {
-    if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(document.contact.prenom.value)) {
+    if (!/^[a-zA-Z][A-Za-z-\s]+$/.test(document.contact.prenom.value)) {
         document.getElementById("validationPrenom").setCustomValidity("Not valid");
         return false;
     }
     return true;
 }
 let validateVille = () => {
-    if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(document.contact.ville.value)) {
+    if (!/^[a-zA-Z][A-Za-z-\s]+$/.test(document.contact.ville.value)) {
         document.getElementById("validationVille").setCustomValidity("Not valid");
         return false;
     }
     return true;
 }
 let validateEmail = () => {
-    if (!/^\S+@\S+\.\S+$/.test(document.contact.email.value)) {
+    if (!/^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/.test(document.contact.email.value)) {
         document.getElementById("validationEmail").setCustomValidity("Not valid");
         return false;
     }

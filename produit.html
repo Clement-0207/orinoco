@@ -76,14 +76,18 @@
           </div>
           <div class="col-sm-6 card">
             <div class="pb-5 pl-0 pt-5 col-sm-8">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <button type="button" class="btn btn-primary" data-toggle="dropdown-menu">
                 Personnalisation
               </button>
-              <div id="personnalisation-produit" class="dropdown-menu">
+              <div id="personnalisation-produit" class="dropdown-active">
               </div>
             </div>
             <div class="p-0 card-body">
               <h5 id="prix-produit" class="mt-auto card-title"></h5>
+              <div class="quantity mb-3">
+                <span>Quantité : </span>
+                <input id="qtes" type="number" value="1" min="0" max="1000" step="1" class="ml-2" />
+              </div>
               <button onclick="ajoutPanier()" class="mt-auto btn btn-primary">AJOUT PANIER</button>
 
             </div>
