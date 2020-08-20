@@ -14,7 +14,7 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-	<title>MVP-Orinoco-produit</title>
+	<title>MVP-Orinoco-panier</title>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.html">
 				<div class="col-md-4 px-0">
-					<img src="images/logoorinoco.jpg" class="img-logo">
+					<img src="images/logoorinoco.jpg" class="img-logo" alt="enseigne">
 				</div>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 	</nav>
-	<div id="panierVide" class="container col-lg-12 text-center display-4 alert alert-warning">
+	<div id="panierVide" class="container col-lg-12 text-center h3 alert alert-warning">
 		Panier vide !!!
 	</div>
 	<div id="panierPlein" class="container">
@@ -89,9 +89,6 @@
 					</td>
 
 					<td class="form-panier">
-
-
-						<!--nouv formulaire-->
 						<form id="contact" name="contact" class="needs-validation" novalidate>
 
 							<div class="form-row">
@@ -167,78 +164,13 @@
 							<button class="btn btn-primary" type="submit">Commander</button>
 
 						</form>
-
-
-
-						<!-- ancien formulaire ci-dessous -->
-						<!-- <form class="well form-horizontal" name="contact">
-							<fieldset class="col-12">
-								<div class="form-group">
-									<label class="col-md-12 control-label">Nom</label>
-									<div class="col-md-12 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span>
-											<input id="fullName" name="nom" placeholder="Nom" class="form-control"
-												required="true" value="Bertoncello123" type="text"
-												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"
-												title="Veuillez saisir un nom correct">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-12 control-label">Prénom</label>
-									<div class="col-md-12 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span>
-											<input id="fullName" name="prenom" placeholder="Prénom" class="form-control"
-												required="true" value="Clément" type="text"
-												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-12 control-label">Adresse</label>
-									<div class="col-md-12 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group glyphicon glyphicon-home"></i></span>
-											<input id="addressLine" name="adresse" class=" form-control" required="true"
-												type="text" value="3 avenue Charles de Gaulle">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-12 control-label">Ville</label>
-									<div class="col-md-12 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span>
-											<input id="city" name="ville" class="form-control" placeholder="Ville"
-												required="true" value="Valréas" type="text"
-												pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-12 control-label">Email</label>
-									<div class="col-md-12 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-gr glyphicon glyphicon-envelope"></i></span>
-											<input id="email" name="email" class="form-control" placeholder="Email"
-												required="true" value="clement@gmail.com" pattern="\S+@\S+\.\S+$">
-										</div>
-									</div>
-								</div>
-								<input type="submit" class="btn btn-primary btn-lg active" value="Commander"></input>
-							</fieldset>
-						</form> -->
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<footer></footer>
+	<footer>
+	</footer>
 	<script src="panier.js"></script>
 </body>
 

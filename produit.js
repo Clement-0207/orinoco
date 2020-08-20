@@ -34,15 +34,15 @@ let ajoutPanier = () => {
     // id "2345"
     // [{id:  "1234", quantity: 1}, {id:  "2345", quantity: 2}]
     localStorage.setItem("panier", JSON.stringify(panier));
-    alert("Article ajouté !");
-    console.log(panier);
+    alert("Quantité : " + document.getElementById('qtes').value + " article(s) ajouté(s) !");
+    //console.log(panier);
 
 };
 
 let panierGestionQuantite = (id, panier) => {
     //document.getElementById('total-euro').innerHTML.split(" ")[0];
     let quantityCompteur = parseInt(document.getElementById('qtes').value);
-    console.log(document.getElementById('qtes').value);
+    //console.log(document.getElementById('qtes').value);
     let indexDuProduitAAjouter = -1;
     for (let i = 0; i < panier.length; i++) {
         // ["1234", "2345"]
