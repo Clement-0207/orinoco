@@ -112,6 +112,7 @@ let validateNom = () => {
         document.getElementById("validationNom").setCustomValidity("Not valid");
         return false;
     }
+    document.getElementById("validationNom").setCustomValidity('');
     return true;
 }
 let validatePrenom = () => {
@@ -119,6 +120,7 @@ let validatePrenom = () => {
         document.getElementById("validationPrenom").setCustomValidity("Not valid");
         return false;
     }
+    document.getElementById("validationPrenom").setCustomValidity('');
     return true;
 }
 let validateVille = () => {
@@ -126,6 +128,7 @@ let validateVille = () => {
         document.getElementById("validationVille").setCustomValidity("Not valid");
         return false;
     }
+    document.getElementById("validationVille").setCustomValidity('');
     return true;
 }
 let validateEmail = () => {
@@ -133,6 +136,7 @@ let validateEmail = () => {
         document.getElementById("validationEmail").setCustomValidity("Not valid");
         return false;
     }
+    document.getElementById("validationEmail").setCustomValidity('');
     return true;
 }
 
@@ -153,12 +157,11 @@ let commander = (event) => {
         formulaireValide = false; étape SI imbrication simple
     }*/
 
-    /*formulaireValide = formulaireValide && validateNom();
-    formulaireValide = formulaireValide && validatePrenom();
-    formulaireValide = formulaireValide && validateVille();
-    formulaireValide = formulaireValide && validateEmail(); étape ET deux conditions obligatoires*/
-
-    formulaireValide = validateNom() && validatePrenom() && validateVille() && validateEmail();
+    formulaireValide = validateNom() && formulaireValide;
+    formulaireValide = validatePrenom() && formulaireValide;
+    formulaireValide = validateVille() && formulaireValide;
+    formulaireValide = validateEmail() && formulaireValide; //étape ET deux conditions obligatoires//
+    //formulaireValide = validateNom() && validatePrenom() && validateVille() && validateEmail();
 
     // -> formulaireValide : false
 
