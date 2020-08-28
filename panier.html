@@ -37,137 +37,142 @@
 			</div>
 		</div>
 	</nav>
-	<div id="panierVide" class="container col-lg-12 text-center h3 alert alert-warning">
-		Panier vide !!!
+	<div id="erreur" class="container col-lg-12 text-center h3 alert alert-danger">
+		Veuillez recharger la page ou essayer ultérieurement, merci.
 	</div>
-	<div id="panierPlein" class="container">
-		<table class="table table-striped">
-			<tbody>
-				<tr>
-					<td>
-						<div class="card col-sm-12">
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table product-table">
-										<thead class="mdb-color lighten-5">
-											<tr>
-												<th class="font-weight-bold">
-													<strong>Produit</strong>
-												</th>
-												<th class="font-weight-bold">
-													<strong>Nom</strong>
-												</th>
-												<th class="text-center font-weight-bold">
-													<strong>Prix</strong>
-												</th>
-												<th class="font-weight-bold">
-													<strong>Quantité</strong>
-												</th>
-												<th class="font-weight-bold">
-													<strong>Supp</strong>
-												</th>
-											</tr>
-										</thead>
-										<tbody id="produits">
-											<tr>
-												<td colspan="1" class="text-left">
-												</td>
-												<td>
-													<h4 class="mt-2"><strong>Total</strong></h4>
-												</td>
-												<td class="text-right">
-													<h4 class="mt-2"><strong id="total-euro"></strong></h4>
-												</td>
-												<td></td>
-												<td></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</td>
-
-					<td class="form-panier">
-						<form id="contact" name="contact" class="needs-validation" novalidate>
-
-							<div class="form-row">
-								<div class="col-md mb-1">
-									<label for="validationNom">Nom</label>
-									<input type="text" class="form-control" id="validationNom" name="nom"
-										placeholder="Nom" value="">
-									<div class="valid-feedback">
-										Correct !
-									</div>
-									<div class="invalid-feedback">
-										Ce champ est invalide !
+	<div id="serveur-valide">
+		<div id="panierVide" class="container col-lg-12 text-center h3 alert alert-warning">
+			Panier vide !!!
+		</div>
+		<div id="panierPlein" class="container">
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<td>
+							<div class="card col-sm-12">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table product-table">
+											<thead class="mdb-color lighten-5">
+												<tr>
+													<th class="font-weight-bold">
+														<strong>Produit</strong>
+													</th>
+													<th class="font-weight-bold">
+														<strong>Nom</strong>
+													</th>
+													<th class="text-center font-weight-bold">
+														<strong>Prix</strong>
+													</th>
+													<th class="font-weight-bold">
+														<strong>Quantité</strong>
+													</th>
+													<th class="font-weight-bold">
+														<strong>Supp</strong>
+													</th>
+												</tr>
+											</thead>
+											<tbody id="produits">
+												<tr>
+													<td colspan="1" class="text-left">
+													</td>
+													<td>
+														<h4 class="mt-2"><strong>Total</strong></h4>
+													</td>
+													<td class="text-right">
+														<h4 class="mt-2"><strong id="total-euro"></strong></h4>
+													</td>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
+						</td>
 
-							<div class="form-row">
-								<div class="col-md mb-1">
-									<label for="validationPrenom">Prénom</label>
-									<input type="text" class="form-control" id="validationPrenom" name="prenom"
-										placeholder="Prénom" value="">
-									<div class="valid-feedback">
-										Correct !
-									</div>
-									<div class="invalid-feedback">
-										Ce champ est invalide !
+						<td class="form-panier">
+							<form id="contact" name="contact" class="needs-validation" novalidate>
+
+								<div class="form-row">
+									<div class="col-md mb-1">
+										<label for="validationNom">Nom</label>
+										<input type="text" class="form-control" id="validationNom" name="nom"
+											placeholder="Nom" value="">
+										<div class="valid-feedback">
+											Correct !
+										</div>
+										<div class="invalid-feedback">
+											Ce champ est invalide !
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="form-row">
-								<div class="col-md mb-1">
-									<label for="validationAdresse">Adresse</label>
-									<input type="text" class="form-control" id="validationAdresse" name="adresse"
-										placeholder="Adresse" value="">
-									<div class="valid-feedback">
-										Correct !
-									</div>
-									<div class="invalid-feedback">
-										Ce champ est invalide !
+								<div class="form-row">
+									<div class="col-md mb-1">
+										<label for="validationPrenom">Prénom</label>
+										<input type="text" class="form-control" id="validationPrenom" name="prenom"
+											placeholder="Prénom" value="">
+										<div class="valid-feedback">
+											Correct !
+										</div>
+										<div class="invalid-feedback">
+											Ce champ est invalide !
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="form-row">
-								<div class="col-md mb-1">
-									<label for="validationVille">Ville</label>
-									<input type="text" class="form-control" name="ville" value="" id="validationVille"
-										placeholder="Ville">
-									<div class="valid-feedback">
-										Correct !
-									</div>
-									<div class="invalid-feedback">
-										Ce champ est invalide !
-									</div>
-								</div>
-							</div>
-
-							<div class="form-row">
-								<div class="col-md mb-3">
-									<label for="validationEmail">Email</label>
-									<input type="email" class="form-control" name="email" value="" id="validationEmail"
-										placeholder="email">
-									<div class="valid-feedback">
-										Correct !
-									</div>
-									<div class="invalid-feedback">
-										Ce champ est invalide !
+								<div class="form-row">
+									<div class="col-md mb-1">
+										<label for="validationAdresse">Adresse</label>
+										<input type="text" class="form-control" id="validationAdresse" name="adresse"
+											placeholder="Adresse" value="">
+										<div class="valid-feedback">
+											Correct !
+										</div>
+										<div class="invalid-feedback">
+											Ce champ est invalide !
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<button class="btn btn-primary" type="submit">Commander</button>
+								<div class="form-row">
+									<div class="col-md mb-1">
+										<label for="validationVille">Ville</label>
+										<input type="text" class="form-control" name="ville" value=""
+											id="validationVille" placeholder="Ville">
+										<div class="valid-feedback">
+											Correct !
+										</div>
+										<div class="invalid-feedback">
+											Ce champ est invalide !
+										</div>
+									</div>
+								</div>
 
-						</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+								<div class="form-row">
+									<div class="col-md mb-3">
+										<label for="validationEmail">Email</label>
+										<input type="email" class="form-control" name="email" value=""
+											id="validationEmail" placeholder="email">
+										<div class="valid-feedback">
+											Correct !
+										</div>
+										<div class="invalid-feedback">
+											Ce champ est invalide !
+										</div>
+									</div>
+								</div>
+
+								<button class="btn btn-primary" type="submit">Commander</button>
+
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<footer>
 	</footer>

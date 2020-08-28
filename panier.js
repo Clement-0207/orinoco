@@ -1,5 +1,3 @@
-// [{id:  "1234", quantity: 1}, {id:  "2345", quantity: 2}]
-
 let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
 let suppression = (produitId) => {
@@ -8,61 +6,41 @@ let suppression = (produitId) => {
         if (panier[i].id === produitId) {
             indexASupprimer = i;
         }
-        //panier est un tableau ex: [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}]
-        //panier[0].quantity = 1
-        //produit est un objet
     }
-    // mettre à jour la quantity du produit
-    // si quantité > 0 - afficher la nouvelle quantité
-    //panier[indexASupprimer].quantity -= 1; utile pour décrémentation
-    /*if (panier[indexASupprimer].quantity > 0) {
-        let soldeQuantity = document.getElementById(produitId);
-        soldeQuantity.innerHTML = panier[indexASupprimer].quantity;
-    }else{}*/
-    // sinon - retrait de la ligne
     let quantiteSupprimee = panier[indexASupprimer].quantity;
     let positionDansTableauHtml;
     let tableauHtml = document.getElementById('produits');
     for (let i = 0, row; row = tableauHtml.rows[i]; i++) {
         if (row.getElementsByTagName("td")[0].id === (produitId + "-row")) {
             positionDansTableauHtml = i;
-
         }
     }
     tableauHtml.deleteRow(positionDansTableauHtml);
 
-
-    // [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}, {id: "1278", quantity: 3}]
     panier.splice(indexASupprimer, 1);
     if (panier.length === 0) {
         document.getElementById('panierPlein').style.display = 'none';
         document.getElementById('panierVide').style.display = 'block';
     }
-    // [{id: "1234", quantity: 1}, {id: "5678", quantity: 2}]
-
-
 
     fetch("http://localhost:3000/api/teddies/" + produitId)
         .then(reponse => reponse.json())
         .then(function (teddy) {
-            // récupérer la valeur de l'article supprimé  -  prixProduit
-            let prixProduit = teddy.price * quantiteSupprimee / 100; // 40
-            // 185,00 € ->  ["185,00", "€"] -> "185,00"
-            // récupérer la somme du total euros - totalEuro
+            document.getElementById('serveur-valide').style.display = 'block';
+            document.getElementById('erreur').style.display = 'none';
+            let prixProduit = teddy.price * quantiteSupprimee / 100;
             let totalEuroString = document.getElementById('total-euro').innerHTML.split(" ")[0];
-            //   "185,00" -> "185.00" -> 185
             let totalEuro = parseFloat(totalEuroString.replace(',', '.').replace(/\s/g, ''));
-            // totalEuro = totalEuro - prixProduit
-            // à la suppression recalculer le total
-            totalEuro = totalEuro - prixProduit; // 145
-            // afficher le nouveau total
+            totalEuro = totalEuro - prixProduit;
             let totalEuroElement = document.getElementById('total-euro');
             totalEuro = totalEuro.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
-            totalEuroElement.innerHTML = totalEuro; // 145,00 €
+            totalEuroElement.innerHTML = totalEuro;
+        })
+        .catch(function (error) {
+            document.getElementById('serveur-valide').style.display = 'none';
+            document.getElementById('erreur').style.display = 'block';
         });
-
     localStorage.setItem("panier", JSON.stringify(panier));
-    // alerte produit supprimé
     alert("Produit supprimé !");
 };
 
@@ -78,10 +56,11 @@ for (let produit of panier) {
     fetch("http://localhost:3000/api/teddies/" + produit.id)
         .then(reponse => reponse.json())
         .then(function (teddy) {
+            document.getElementById('serveur-valide').style.display = 'block';
+            document.getElementById('erreur').style.display = 'none';
             let produits = document.getElementById('produits');
             let euros = teddy.price / 100;
             totalEuro += teddy.price * produit.quantity;
-            //console.log(produit.quantity);
             euros = euros.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
             let row = produits.insertRow(0);
             row.innerHTML =
@@ -105,6 +84,10 @@ for (let produit of panier) {
             totalEuroString = totalEuroString.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
             totalEuroElement.innerHTML = totalEuroString;
         })
+        .catch(function (error) {
+            document.getElementById('serveur-valide').style.display = 'none';
+            document.getElementById('erreur').style.display = 'block';
+        });
 }
 //pattern js
 let validateNom = () => {
@@ -144,29 +127,10 @@ let formulaireContact = document.getElementById("contact");
 let commander = (event) => {
     event.preventDefault();
     let formulaireValide = true;
-    /*if (!validateNom()) {//! avant une comparaison permet de simplifier le "validateNom === false"
-        formulaireValide = false;
-    }
-    if (!validatePrenom()) {
-        formulaireValide = false;
-    }
-    if (!validateVille()) {
-        formulaireValide = false;
-    }
-    if (!validateEmail()) {
-        formulaireValide = false; étape SI imbrication simple
-    }*/
-
     formulaireValide = validateNom() && formulaireValide;
     formulaireValide = validatePrenom() && formulaireValide;
     formulaireValide = validateVille() && formulaireValide;
-    formulaireValide = validateEmail() && formulaireValide; //étape ET deux conditions obligatoires//
-    //formulaireValide = validateNom() && validatePrenom() && validateVille() && validateEmail();
-
-    // -> formulaireValide : false
-
-    // [{id:  "1234", quantity: 1}, {id:  "2345", quantity: 2}]
-    // ["1234", "2345"]
+    formulaireValide = validateEmail() && formulaireValide;
     if (formulaireValide) {
         let products = panier.map(product => product.id);
         fetch("http://localhost:3000/api/teddies/order", {
@@ -187,23 +151,26 @@ let commander = (event) => {
         })
             .then(response => response.json())
             .then(function (response) {
+                document.getElementById('serveur-valide').style.display = 'block';
+                document.getElementById('erreur').style.display = 'none';
                 console.log(response.orderId);
                 let totalEuroString = document.getElementById('total-euro').innerHTML.split(" ")[0];
-                let totalEuro = parseFloat(totalEuroString.replace(',', '.'));
+                let totalEuro = parseFloat(totalEuroString.replace(',', '.').replace(/\s/g, ''));
                 localStorage.setItem("panier", JSON.stringify([]));
                 window.location.href = 'confirmation.html?orderId=' + response.orderId + '&totalEuro=' + totalEuro; //confirmation.html?orderId=1234-ABDC&totalEuro=19100
+            })
+            .catch(function (error) {
+                document.getElementById('serveur-valide').style.display = 'none';
+                document.getElementById('erreur').style.display = 'block';
             });
     }
-
 };
 formulaireContact.addEventListener('submit', commander);
 
 
 window.addEventListener('load', function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
     let forms = document.getElementsByClassName('needs-validation');
     console.log(forms);
-    // Loop over them and prevent submission
     Array.prototype.filter.call(forms, function (form) {
         console.log(form);
         form.addEventListener('submit', function (event) {
@@ -215,33 +182,3 @@ window.addEventListener('load', function () {
         }, false);
     });
 }, false);
-
-
-// let tableau = [1234, 12345, 123456]
-// tableau[0] - chiffre
-
-// let objet = {id: "1234", value: 1234, isValid: true}
-// objet.isValid - boolean
-
-// let tableauObjet = [{id: "1234", value: "1234"}, {id: "1234", value: "1234"}]
-// tableauObjet[0] - {id: "1234", value: "1234"}
-// tableauObjet[0].id
-
-// let tableauDeDinguo = [{id: "1234", value: "1234", colors: ["blue", "green"]}, {id: "1234", value: "1234", colors: ["yellow",  "red"]}]
-
-// afficher la 2ème couleur du premier objet du tableau
-// tableauDeDinguo[0].colors[1] - string
-// tableauDeDinguo[0].colors - tableau de string
-// tableauDeDinguo[0] - objet
-// tableauDeDinguo - tableau
-
-// for (let element1 of tableauDeDinguo){} - un objet du tableauDeDinguo
-
-
-
-
-// for (let element2 of tableauDeDinguo[1].colors){} - un element de l'index 1 soit colors qui est un string et que l'element2 est un string
-
-// produit - produit.quantity
-
-//

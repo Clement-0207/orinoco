@@ -1,8 +1,10 @@
-/*recherche choix produit index.html*/
+//recherche choix produit//
 let id = window.location.search.split("=")[1];
 fetch("http://localhost:3000/api/teddies/" + id)
     .then(reponse => reponse.json())
     .then(function (teddy) {
+        document.getElementById('serveur-valide').style.display = 'block';
+        document.getElementById('erreur').style.display = 'none';
         console.log(teddy);
         let image = document.getElementById('img-produit');
         image.src = teddy.imageUrl;
@@ -20,47 +22,31 @@ fetch("http://localhost:3000/api/teddies/" + id)
                 '<a class="dropdown-item" href="#">' + choix + '</a>'
         }
     })
+    .catch(function (error) {
+        document.getElementById('serveur-valide').style.display = 'none';
+        document.getElementById('erreur').style.display = 'block';
+    });
 
 let ajoutPanier = () => {
-    /*afficher le Id déjà ok du produit sélectionné*/
-    // Pour vider le tableau
-    //localStorage.setItem("panier", JSON.stringify([]));
-
     let panier = JSON.parse(localStorage.getItem("panier")) || [];
-    //panier.push(id);
     panier = panierGestionQuantite(id, panier);
-
-    // ["1234", "2345"]
-    // id "2345"
-    // [{id:  "1234", quantity: 1}, {id:  "2345", quantity: 2}]
     localStorage.setItem("panier", JSON.stringify(panier));
-    alert("Quantité : " + document.getElementById('qtes').value + " article(s) ajouté(s) !");
-    //console.log(panier);
-
+    alert(document.getElementById('qtes').value + " article(s) ajouté(s) !");
 };
 
 let panierGestionQuantite = (id, panier) => {
-    //document.getElementById('total-euro').innerHTML.split(" ")[0];
     let quantityCompteur = parseInt(document.getElementById('qtes').value);
-    //console.log(document.getElementById('qtes').value);
     let indexDuProduitAAjouter = -1;
     for (let i = 0; i < panier.length; i++) {
-        // ["1234", "2345"]
-        //id ("3456") l'id du produit affiché sur la page
-        //panier[i].id ("2345") l'id de l'élément i du panier - i est un nombre de chaque index du tableau
         if (panier[i].id === id) {
             indexDuProduitAAjouter = i;
         }
     }
     if (indexDuProduitAAjouter === -1) {
-        // si il existe, on augmente quantity de 1
         panier.push({ id: id, quantity: quantityCompteur });
-        // sinon, on ajoute un nouvel objet dans le panier
     } else {
         panier[indexDuProduitAAjouter].quantity += quantityCompteur;
     }
-    // recherche dans le panier si l'id  en paramètre existe
-    // retourner le panier
     return panier;
 };
 

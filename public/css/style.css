@@ -53,6 +53,11 @@ a.nav-link {
   width: 400px;
 }
 
+#erreur {
+  height: 500px;
+  display: none;
+}
+
 @font-face {
   font-family: "devon";
   src: url("../fonts/Devonshire-Regular.ttf");
