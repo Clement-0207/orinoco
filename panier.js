@@ -157,7 +157,7 @@ let commander = (event) => {
                 let totalEuroString = document.getElementById('total-euro').innerHTML.split(" ")[0];
                 let totalEuro = parseFloat(totalEuroString.replace(',', '.').replace(/\s/g, ''));
                 localStorage.setItem("panier", JSON.stringify([]));
-                window.location.href = 'confirmation.html?orderId=' + response.orderId + '&totalEuro=' + totalEuro; //confirmation.html?orderId=1234-ABDC&totalEuro=19100
+                window.location.href = 'confirmation.html?orderId=' + response.orderId + '&totalEuro=' + totalEuro;
             })
             .catch(function (error) {
                 document.getElementById('serveur-valide').style.display = 'none';

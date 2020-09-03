@@ -29,7 +29,7 @@ fetch("http://localhost:3000/api/teddies/" + id)
 
 let ajoutPanier = () => {
     let panier = JSON.parse(localStorage.getItem("panier")) || [];
-    panier = panierGestionQuantite(id, panier);
+    panier = panierGestionQuantite(id, panier);//37 à 51
     localStorage.setItem("panier", JSON.stringify(panier));
     alert(document.getElementById('qtes').value + " article(s) ajouté(s) !");
 };
